@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,84 +25,40 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  List<int> items =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 600.0,
-      width: double.infinity,
-      color: Colors.blue,
-      child: ListView(
-        children: [
-          ListTile(
-            title: Text("Bangladesh"),
-            leading: Container(
-              height: 50.0,
-              width: 50.0,
-              child: Icon(Icons.flag),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.greenAccent
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            subtitle: Text("Growing Country"),
-            textColor: Colors.white,
+    return ListView.separated(
+      scrollDirection: Axis.vertical,
+        padding: EdgeInsets.all(5.0),
+        separatorBuilder: (context, index) => Divider(color: Colors.blueGrey,
+        thickness: 2.0,),
+        itemCount:items.length,itemBuilder: (BuildContext context,int index)
+    {
+      return Container(
+        width: 400.0,
+          child:
+        ListTile(
+            title: Text("Row no ${items[index]}"),
+             /*leading: Container(
+          width: 40.0,
+          height: 40.0,
+          child: Icon(Icons.flag),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.greenAccent
           ),
-          ListTile(
-            title: Text("Pakistan"),
-            leading: Container(
-              height: 50.0,
-              width: 50.0,
+        )*/
+
+            leading: CircleAvatar(
+              backgroundColor: Colors.greenAccent,
               child: Icon(Icons.flag),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.greenAccent
-              ),
             ),
-            trailing: Icon(Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            subtitle: Text("Growing Country"),
-            textColor: Colors.white,
+            trailing: Icon(Icons.arrow_forward),
           ),
-          ListTile(
-            title: Text("Pakistan"),
-            leading: Container(
-              height: 50.0,
-              width: 50.0,
-              child: Icon(Icons.flag),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.greenAccent
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            subtitle: Text("Growing Country"),
-            textColor: Colors.white,
-          ),
-          ListTile(
-            title: Text("Pakistan"),
-            leading: Container(
-              height: 50.0,
-              width: 50.0,
-              child: Icon(Icons.flag),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.greenAccent
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward,
-              color: Colors.white,
-            ),
-            subtitle: Text("Growing Country"),
-            textColor: Colors.white,
-          )
-        ],
-      ),
+      );
+    }
     );
   }
 }
