@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
     return ListView.separated(
       scrollDirection: Axis.vertical,
         padding: EdgeInsets.all(5.0),
-        separatorBuilder: (context, index) => Divider(color: Colors.blueGrey,
+        separatorBuilder: (context, index) => const Divider(color: Colors.blueGrey,
         thickness: 2.0,),
         itemCount:items.length,itemBuilder: (BuildContext context,int index)
     {
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
         width: 400.0,
           child:
         ListTile(
-            title: Text("Row no ${items[index]}"),
+            title: Text("${count} Row number  ${items[index]}"),
              /*leading: Container(
           width: 40.0,
           height: 40.0,
@@ -55,10 +55,23 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: Colors.greenAccent,
               child: Icon(Icons.flag),
             ),
-            trailing: Icon(Icons.arrow_forward),
+            trailing: FloatingActionButton(
+              onPressed: onButtonClicked,
+              child: Icon(Icons.add),
+            ),
           ),
       );
     }
     );
+  }
+
+  int count = 0 ;
+  void onButtonClicked(){
+    setState(() {
+      count++;
+      if(count>=10){
+        count=0;
+      }
+    });
   }
 }
